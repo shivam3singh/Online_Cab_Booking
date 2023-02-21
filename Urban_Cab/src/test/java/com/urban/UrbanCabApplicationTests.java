@@ -1,10 +1,10 @@
-package com.cab;
+package com.urban;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class OnlineCabBookingApplicationTests {
+class UrbanCabApplicationTests {
 
 	@Test
 	void contextLoads() {

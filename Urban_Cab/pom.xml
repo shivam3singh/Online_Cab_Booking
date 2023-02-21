@@ -8,10 +8,10 @@
 		<version>2.7.8</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>Online_Cab_Booking</artifactId>
+	<groupId>com.urban</groupId>
+	<artifactId>Urban_Cab</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Online_Cab_Booking</name>
+	<name>Urban_Cab</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
@@ -29,8 +29,8 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
-		<dependency>
+
+<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
 			<version>1.6.14</version>

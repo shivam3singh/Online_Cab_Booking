@@ -1,13 +1,13 @@
-package com.cab;
+package com.urban;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OnlineCabBookingApplication {
+public class UrbanCabApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OnlineCabBookingApplication.class, args);
+		SpringApplication.run(UrbanCabApplication.class, args);
 	}
 
 }
