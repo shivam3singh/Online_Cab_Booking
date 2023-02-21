@@ -4,4 +4,4 @@
 To Use This application Follow the given steps in my sql.<br/>
 My Sql password and userName should be "743355","root" Other wise chenge the configaretion file of this application As per your details.<br/>
 <h4>create database urban_cab;<br/>
-use detabase urban_cab;</h4>
+use urban_cab;</h4>
