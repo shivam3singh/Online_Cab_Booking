@@ -1,5 +1,6 @@
 package com.urbancab.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -11,9 +12,10 @@ public class TripBooking {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	private Integer tripBookingId;
 	
-	@OneToOne(mappedBy = "trip")
+	@ManyToOne
 	private Driver driver;
 	private String fromLocation;
 	private String toLocation;
