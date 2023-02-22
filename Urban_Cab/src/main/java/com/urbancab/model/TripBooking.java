@@ -1,21 +1,23 @@
 package com.urbancab.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class TripBooking {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	private Integer tripBookingId;
 	
-	@ManyToOne
+	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "trip")
 	private Driver driver;
 	private String fromLocation;
 	private String toLocation;

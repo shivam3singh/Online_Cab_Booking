@@ -1,27 +1,28 @@
 package com.urbancab.model;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.util.ArrayList;
-import java.util.List;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @Entity
 public class Driver extends AbstractUser{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	private Integer driverId;
 	private String licenceNo;
 	
-	@OneToOne(mappedBy = "driver")
+	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "driver")
 	private Cab cab;
 	private Float rating;
 	
-	@OneToMany(mappedBy = "driver")
-	private List<TripBooking> trips = new ArrayList<>();
+	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	private TripBooking trip;
 }
