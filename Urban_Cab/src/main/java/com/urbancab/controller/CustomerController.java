@@ -29,10 +29,10 @@ public class CustomerController {
         return customerService.updateCustomer(uniqueKey, customer);
     }
 
-    @DeleteMapping("/customer/{uniquekey}")
-    public String deleteCustomer(@PathVariable("uniquekey") String uniqueKey) {
-        return customerService.deleteCustomer(uniqueKey);
-    }
+//    @DeleteMapping("/customer/{uniquekey}")
+//    public String deleteCustomer(@PathVariable("uniquekey") String uniqueKey) {
+//        return customerService.deleteCustomer(uniqueKey);
+//    }
 
     @GetMapping("/customer/{uniquekey}/alltrips")
     public List<TripBooking> getTripsByCustomer(@PathVariable("uniquekey") String uniqueKey) {

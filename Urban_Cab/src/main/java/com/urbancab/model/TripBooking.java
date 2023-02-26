@@ -1,5 +1,7 @@
 package com.urbancab.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
@@ -17,8 +19,8 @@ public class TripBooking {
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	private Integer tripBookingId;
 
-	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
-	@ManyToOne
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Driver driver;
 	@NotNull(message = "From location should not be null.")
 	private String fromLocation;
@@ -39,10 +41,10 @@ public class TripBooking {
 	@Min(value = 50, message = "Min distance should be 50")
 	private Float distanceInKm;
 
-	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
+	@JsonIgnore
 	private Float Bill;
 
-	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
-	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnore
+	@ManyToOne
 	private Customer customer;
 }

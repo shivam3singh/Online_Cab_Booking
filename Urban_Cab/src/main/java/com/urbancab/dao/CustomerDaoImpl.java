@@ -66,7 +66,7 @@ public class CustomerDaoImpl implements CustomerDao{
 
         Customer existingCustomer = customerRepo.findById(userSession.getUserId()).orElseThrow(() -> new UserException("No customer found with id: " + userSession.getUserId()));
 
-        if (existingCustomer.getPassword() != customer.getPassword()) throw new UserException("Incorrect password entered.");
+        if (!existingCustomer.getPassword().equals(customer.getPassword())) throw new UserException("Incorrect password entered.");
 
         List<String> adminUsernames = adminRepo.getAllUsernames();
         List<String> driverUserNames = driverRepo.getAllUsernames();
@@ -88,14 +88,20 @@ public class CustomerDaoImpl implements CustomerDao{
         existingCustomer.setUsername(customer.getUsername());
         existingCustomer.setMobileNumber(customer.getMobileNumber());
 
+        userSession.setUserName(customer.getUsername());
+
+        userSessionRepo.save(userSession);
+
         return customerRepo.save(existingCustomer);
     }
 
     @Override
     public String deleteCustomer(String uniqueKey) {
-        UserSession userSession = userSessionRepo.findByUuid(uniqueKey).orElseThrow(() -> new UserSessionException("Admin not logged in."));
+        UserSession userSession = userSessionRepo.findByUuid(uniqueKey).orElseThrow(() -> new UserSessionException("Customer not logged in."));
 
-        Customer existingCustomer = customerRepo.findById(userSession.getUserId()).orElseThrow(() -> new UserException("No customer found with id: " + userSession.getUserId()));
+        Customer existingCustomer = customerRepo.findByUsername(userSession.getUserName()).orElseThrow(() -> new UserException("No customer found with username: " + userSession.getUserName()));
+
+        existingCustomer.setTrips(null);
 
         customerRepo.delete(existingCustomer);
 

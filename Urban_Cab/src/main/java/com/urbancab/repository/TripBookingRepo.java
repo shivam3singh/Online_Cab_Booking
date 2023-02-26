@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @Repository
 public interface TripBookingRepo extends JpaRepository<TripBooking, Integer> {
-
     public Optional<List<TripBooking>> findByCustomer(Customer customer);
 
     public List<TripBooking> findByFromDateTime(LocalDateTime dateTime);

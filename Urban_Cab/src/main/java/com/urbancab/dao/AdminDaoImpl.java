@@ -68,9 +68,9 @@ public class AdminDaoImpl implements AdminDao{
     public Admin updateAdmin(String uniqueKey, Admin admin) {
         UserSession userSession = userSessionRepo.findByUuid(uniqueKey).orElseThrow(() -> new UserSessionException("Admin not logged in."));
 
-        Admin existingAdmin = adminRepo.findById(userSession.getUserId()).orElseThrow(() -> new UserException("You are not an admin"));
+        Admin existingAdmin = adminRepo.findByUsername(userSession.getUserName()).orElseThrow(() -> new UserException("You are not an admin"));
 
-        if (existingAdmin.getPassword() != admin.getPassword()) throw new UserException("Incorrect password entered.");
+        if (!existingAdmin.getPassword().equals(admin.getPassword())) throw new UserException("Incorrect password entered.");
 
         List<String> customerUsernames = customerRepo.getAllUsernames();
         List<String> driverUserNames = driverRepo.getAllUsernames();

@@ -21,6 +21,6 @@ public class Customer extends AbstractUser{
 	private Integer customerId;
 
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy ="customer" )
-	private List<TripBooking> trips=new ArrayList<>();
+	@OneToMany(mappedBy ="customer")
+	private List<TripBooking> trips = new ArrayList<>();
 }

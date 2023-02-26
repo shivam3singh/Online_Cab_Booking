@@ -28,10 +28,10 @@ public class TripBookingController {
         return new ResponseEntity<>(tripBookingService.updateTripBooking(uniqueKey, tripBookingDTO), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{uniquekey}")
-    public ResponseEntity<String> deleteTripBooking (@PathVariable("uniquekey") String uniqueKey, @RequestParam("tripBookingId") Integer tripBookingId) {
-        return new ResponseEntity<>(tripBookingService.deleteTripBooking(uniqueKey, tripBookingId), HttpStatus.OK);
-    }
+//    @DeleteMapping("/{uniquekey}")
+//    public ResponseEntity<String> deleteTripBooking (@PathVariable("uniquekey") String uniqueKey, @RequestParam("tripBookingId") Integer tripBookingId) {
+//        return new ResponseEntity<>(tripBookingService.deleteTripBooking(uniqueKey, tripBookingId), HttpStatus.OK);
+//    }
 
     @GetMapping("/{uniquekey}/trips")
     public ResponseEntity<List<TripBooking>> ViewAllTripsByCustomer (@PathVariable("uniquekey") String uniqueKey, @RequestParam("customerId") Integer customerId) {

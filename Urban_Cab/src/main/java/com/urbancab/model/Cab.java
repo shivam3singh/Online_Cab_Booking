@@ -21,10 +21,10 @@ public class Cab {
 	@NotNull(message = "Per Km Rate should not be null.")
 	private Float perKmRate;
 
-	@JsonIgnore
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	private Boolean available = true;
 
 	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private Driver driver;
 }

@@ -80,13 +80,13 @@ public class GlobalExceptionHandler {
 
 
     /*--------------------------------------------  Exception  --------------------------------------------------*/
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorDetails> Exception(Exception exception, WebRequest webRequest){
-
-        ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), exception.getMessage(), webRequest.getDescription(false));
-
-        return new ResponseEntity<>(errorDetails,HttpStatus.BAD_REQUEST);
-    }
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity<ErrorDetails> exception(Exception exception, WebRequest webRequest){
+//
+//        ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), exception.getMessage(), webRequest.getDescription(false));
+//
+//        return new ResponseEntity<>(errorDetails,HttpStatus.BAD_REQUEST);
+//    }
 
     /*--------------------------------------------  Null Pointer Exception  --------------------------------------------------*/
     @ExceptionHandler(NullPointerException.class)
