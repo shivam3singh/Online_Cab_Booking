@@ -1,7 +1,7 @@
 package com.urbancab.model;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
@@ -26,8 +26,8 @@ public class Driver extends AbstractUser{
 	@NotNull(message = "Licence no should not be null.")
 	private String licenceNo;
 
-	@OneToOne(mappedBy = "driver")
 	@JsonIgnore
+	@OneToOne(mappedBy = "driver")
 	private Cab cab;
 
 	@NotNull(message = "Rating should not be null.")
@@ -35,7 +35,7 @@ public class Driver extends AbstractUser{
 	@Max(value = 5, message = "Rating should not be more than 5.")
 	private Float rating;
 
-	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
+	@JsonIgnore
 	private Boolean available = true;
 	@JsonIgnore
 	@OneToMany(mappedBy = "driver")

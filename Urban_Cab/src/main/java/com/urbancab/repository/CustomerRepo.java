@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface CustomerRepo extends JpaRepository<Customer, Integer> {
 
-    public Optional<Customer> findByUsername(String username);
+    
 
     @Query("select c.username from Customer c")
     public List<String> getAllUsernames();
@@ -25,4 +25,6 @@ public interface CustomerRepo extends JpaRepository<Customer, Integer> {
 
     @Query("select c.trips from Customer c where c.customerId = ?1")
     public Optional<List<TripBooking>> findAllTripsOfCustomer(Integer customerId);
+    
+    public Optional<Customer> findByUsername(String username);
 }

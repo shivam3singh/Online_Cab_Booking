@@ -33,6 +33,7 @@ public class GlobalExceptionHandler {
 
     }
 
+    /*----------------------------------------NoHandellerFoundException--------------------------------------*/
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResponseEntity<ErrorDetails> mynotFoundHandler(NoHandlerFoundException noHandlerFoundException, WebRequest request) {
         ErrorDetails err=new ErrorDetails(LocalDateTime.now(), noHandlerFoundException.getMessage(), request.getDescription(false));
@@ -45,6 +46,15 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorDetails> userException(UserException userException, WebRequest request){
 
         ErrorDetails err=new ErrorDetails(LocalDateTime.now(), userException.getMessage(), request.getDescription(false));
+
+        return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+
+    }
+    /* --------------------------------------   Customer Exception    ----------------------------------------------*/
+    @ExceptionHandler(CustomerException.class)
+    public ResponseEntity<ErrorDetails> customerException(CustomerException customerException, WebRequest request){
+
+        ErrorDetails err=new ErrorDetails(LocalDateTime.now(), customerException.getMessage(), request.getDescription(false));
 
         return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
 
@@ -80,13 +90,13 @@ public class GlobalExceptionHandler {
 
 
     /*--------------------------------------------  Exception  --------------------------------------------------*/
-//    @ExceptionHandler(Exception.class)
-//    public ResponseEntity<ErrorDetails> exception(Exception exception, WebRequest webRequest){
-//
-//        ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), exception.getMessage(), webRequest.getDescription(false));
-//
-//        return new ResponseEntity<>(errorDetails,HttpStatus.BAD_REQUEST);
-//    }
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorDetails> Exception(Exception exception, WebRequest webRequest){
+
+        ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), exception.getMessage(), webRequest.getDescription(false));
+
+        return new ResponseEntity<>(errorDetails,HttpStatus.BAD_REQUEST);
+    }
 
     /*--------------------------------------------  Null Pointer Exception  --------------------------------------------------*/
     @ExceptionHandler(NullPointerException.class)

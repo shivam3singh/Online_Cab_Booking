@@ -1,6 +1,7 @@
 package com.urbancab.dao;
 
 import com.urbancab.exception.CabException;
+import com.urbancab.exception.CustomerException;
 import com.urbancab.exception.UserException;
 import com.urbancab.exception.UserSessionException;
 import com.urbancab.model.Cab;
@@ -25,7 +26,7 @@ public class CabDaoImpl implements CabDao{
     private CabRepo cabRepo;
 
     @Override
-    public Cab insertCab(String uniqueKey, Cab cab) {
+    public Cab insertCab(String uniqueKey, Cab cab) throws CustomerException {
         UserSession userSession = userSessionRepo.findByUuid(uniqueKey).orElseThrow(() -> new UserSessionException("User not logged in."));
 
         adminRepo.findById(userSession.getUserId()).orElseThrow(() -> new UserException("You are not an admin"));

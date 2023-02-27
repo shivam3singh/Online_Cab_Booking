@@ -2,15 +2,13 @@ package com.urbancab.model;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
 public class TripBookingDTO {
-
+    @NotNull(message = "Trip booking id should not be null.")
     private Integer tripBookingId;
     @NotNull(message = "From location should not be null.")
     private String fromLocation;

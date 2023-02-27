@@ -72,28 +72,13 @@ public class TripBookingDaoImpl implements TripBookingDao{
     public String deleteTripBooking(String uniqueKey, Integer tripBookingId) {
         UserSession userSession = userSessionRepo.findByUuid(uniqueKey).orElseThrow(() -> new UserSessionException("User not logged in."));
 
-        Customer customer = customerRepo.findByUsername(userSession.getUserName()).orElseThrow(() -> new UserException("Customer not found with username: " + userSession.getUserName()));
+        customerRepo.findByUsername(userSession.getUserName()).orElseThrow(() -> new UserException("Customer not found with username: " + userSession.getUserName()));
 
-        List<TripBooking> trips = customer.getTrips();
+        TripBooking existingTripBooking = tripBookingRepo.findById(tripBookingId).orElseThrow(() -> new TripBookingException("No trip booking found for id: " + tripBookingId));
 
-        System.out.println(trips);
+        tripBookingRepo.delete(existingTripBooking);
 
-        TripBooking tripBooking = null;
-
-        for (int i=0; i<trips.size(); i++) {
-            if (trips.get(i).getTripBookingId() == tripBookingId) {
-                tripBooking = trips.get(i);
-            }
-        }
-
-        if (tripBooking == null) throw new TripBookingException("No trip booking found for id: " + tripBookingId);
-
-        tripBooking.getDriver().setAvailable(true);
-        tripBooking.setStatus(false);
-
-        tripBookingRepo.save(tripBooking);
-
-        return tripBooking + " deleted successfully.";
+        return existingTripBooking + " deleted successfully.";
     }
 
     @Override
